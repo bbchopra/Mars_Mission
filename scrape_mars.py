@@ -76,7 +76,8 @@ def scrape():
     soup = BeautifulSoup(html_weather, 'html.parser')
 
     # Find all elements that contain tweets
-    weather_tweet = soup.find('div', 'p', class_='js-tweet-text-container').text
+    tweet_pic = soup.find('div', 'p', class_='js-tweet-text-container').find('a').text
+    weather_tweet = soup.find('div', 'p', class_='js-tweet-text-container').text.replace(tweet_pic,"")
 
     # save the tweet
     mars_info['weather_tweet'] = weather_tweet
